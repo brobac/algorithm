@@ -2,6 +2,14 @@
  - https://www.acmicpc.net/problem/5430
  - 골드5
  
+ R이 나왔을 때 reverse 하는 작업을 했더니 시간초과가 나왔다
+ R이 연속 2번 나오면 reverse를 안하게 고쳤지만 그래도 reverse하는데 O(N) 소요
+ R이 나왔을 때 isReverse 하는 flag를 두어서 true 이면 뒤에서 pop하고 pop이면 앞에서 pop 하는 방식으로
+ reverse하는 시간을 줄였다.
+ 그런데 틀렸습니다가 나왔다. 
+ n 이 0일때
+ arr = "".split(",").map(Number) 의 결과가 [0] 이 나와버러서
+ 빈배열이 출력되야되는데 [0]이 출력되서 틀렸다.
  */
 
 const input = require("fs")
