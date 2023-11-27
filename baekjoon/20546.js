@@ -2,6 +2,8 @@
  - https://www.acmicpc.net/problem/20546
  - 실버5
  - 구현
+
+ - 맞았습니다 나왔지만 잘못 풀었던 문제여서 수정
 */
 const input = require("fs")
   .readFileSync("test.txt")
@@ -24,26 +26,24 @@ const firstDayBuy = Math.trunc(money / arr[0]);
 bnp.money -= firstDayBuy * arr[0];
 bnp.stock += firstDayBuy;
 
-let upDown = 0;
 for (let i = 1; i < arr.length; i++) {
   const bnpBuy = Math.trunc(bnp.money / arr[i]);
   bnp.money -= bnpBuy * arr[i];
   bnp.stock += bnpBuy;
-
-  if (arr[i - 1] < arr[i]) {
-    //상승
-    if (0 < upDown) upDown++;
-    else upDown = 1;
-  } else if (arr[i - 1] > arr[i]) {
-    //히락
-    if (upDown < 0) upDown--;
-    else upDown = -1;
-  }
-
-  if (upDown === 3) {
+}
+for (let i = 3; i < arr.length; i++) {
+  if (
+    arr[i - 3] < arr[i - 2] &&
+    arr[i - 2] < arr[i - 1] &&
+    arr[i - 1] < arr[i]
+  ) {
     timing.money += timing.stock * arr[i];
     timing.stock = 0;
-  } else if (upDown === -3) {
+  } else if (
+    arr[i] < arr[i - 1] &&
+    arr[i - 1] < arr[i - 2] &&
+    arr[i - 2] < arr[i - 3]
+  ) {
     const timingBuy = Math.trunc(timing.money / arr[i]);
     timing.money -= timingBuy * arr[i];
     timing.stock += timingBuy;
