@@ -1,9 +1,7 @@
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 
 public class Main {
@@ -102,13 +100,7 @@ public class Main {
             }
         }
 
-//
-//        for (int i = 0; i < 5; i++) {
-//            for (int j = 0; j < 5; j++) {
-//                System.out.print(empty[i][j] ? 1 : 0);
-//            }
-//            System.out.println();
-//        }
+      
 
 
         for (int c = 0; c < 5; c++) {
@@ -118,10 +110,7 @@ public class Main {
                 }
             }
         }
-//        System.out.println("새로 채운 다음-----");
-//        for (int r = 0; r < 5; r++) {
-//            System.out.println(Arrays.toString(map[r]));
-//        }
+      
 
         return result;
     }
@@ -192,8 +181,8 @@ public class Main {
             int centerC = -1;
             int turnCount = 0;
 
-            for (int r = 1; r <= 3; r++) {
-                for (int c = 1; c <= 3; c++) {
+            for (int c = 1; c <= 3; c++) {
+                for (int r = 1; r <= 3; r++) {
                     int[][] arr = copy(map);
                     for (int turn = 1; turn <= 3; turn++) {
 
