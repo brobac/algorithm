@@ -8,6 +8,7 @@ public class Main {
     static ArrayList<int[]>[] adjList;
     static PriorityQueue<Product> bestQ;
     static boolean[] canceled;
+    static boolean[] created;
     static int[] minCost;
 
 
@@ -48,6 +49,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         canceled = new boolean[30001];
+        created = new boolean[300001];
 
         adjList = new ArrayList[N];
         for (int i = 0; i < N; i++) {
@@ -62,12 +64,6 @@ public class Main {
 
         }
         calculate();
-//        for (int i = 0; i < N; i++) {
-//            System.out.println(i + "번 도시 인접");
-//            for (int[] adj : adjList[i]) {
-//                System.out.println(Arrays.toString(adj));
-//            }
-//        }
 
         query:
         for (int i = 1; i < Q; i++) {
@@ -81,6 +77,7 @@ public class Main {
                 int gain = revenue - minCost[dest];
 
                 Product p = new Product(id, revenue, dest, gain);
+                created[id] = true;
 //                System.out.println("상품추가 :" + p);
                 bestQ.offer(p);
 
@@ -89,7 +86,9 @@ public class Main {
 
             if (instruction == 300) {
                 int id = Integer.parseInt(st.nextToken());
-                canceled[id] = true;
+                if (created[id]) {
+                    canceled[id] = true;
+                }
                 continue;
             }
 
@@ -107,6 +106,7 @@ public class Main {
                     }
                     p = bestQ.poll();
                     if (!canceled[p.id]) {
+//                        System.out.println(p.id + " 판매");
                         sb.append(p.id).append("\n");
                         continue query;
                     }
