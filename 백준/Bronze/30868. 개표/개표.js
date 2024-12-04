@@ -1,0 +1,1 @@
+console.log(require("fs").readFileSync(0).toString().trim().split("\n").slice(1).map(Number).map(v=>"++++ ".repeat(v/5)+"|".repeat(v%5)).join("\n"))
