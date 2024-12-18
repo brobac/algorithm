@@ -1,0 +1,1 @@
+console.log(require("fs").readFileSync(0).toString().trim().split("\n")[1].split(" ").map(Number).map(v=> v === 300 ? 1 : 275<= v ? 2 : 250 <= v ? 3 : 4).join(" "))
