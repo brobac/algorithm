@@ -1,63 +1,37 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     static final int MOD = 1000000;
-    static Map<String, Integer> memo = new HashMap<>();
-
-    static int solution(String s) {
-        if (s.charAt(0) == '0') return 0;
-        if (memo.containsKey(s)) return memo.get(s);
-        if (s.length() == 1) {
-            memo.put(s, 1);
-            return 1;
-        }
-        if (s.length() == 2) {
-            int n = Integer.parseInt(s);
-
-            if (n == 10 || n == 20) {
-                memo.put(s, 1);
-                return 1;
-            }
-            if (1 <= n && n <= 26) {
-                memo.put(s, 2);
-                return 2;
-            }
-
-            if (s.charAt(0) == '0' || s.charAt(1) == '0') {
-                memo.put(s, 0);
-                return 0;
-            }
-            memo.put(s, 1);
-            return 1;
-        }
-
-        int n = Integer.parseInt(s.substring(0, 2));
-
-        if (1 <= n && n <= 26) {
-
-            if (n == 10 || n == 20) {
-                int result = solution(s.substring(2)) % MOD;
-                memo.put(s, result);
-                return result;
-            }
-
-            int result = (solution(s.substring(1)) + solution(s.substring(2))) % MOD;
-            memo.put(s, result);
-            return result;
-        }
-        int result = solution(s.substring(1)) % MOD;
-        memo.put(s, result);
-        return result;
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String input = br.readLine();
+        char[] input = br.readLine().toCharArray();
 
-        System.out.println(solution(input));
+        int[] nums = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            nums[i] = input[i] - '0';
+        }
+
+        if (nums[0] == 0) {
+            System.out.println(0);
+            return;
+        }
+
+        int[] dp = new int[input.length + 1];
+
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 1; i < input.length; i++) {
+            if (0 < nums[i]) {
+                dp[i + 1] = dp[i];
+            }
+            int n = nums[i - 1] * 10 + nums[i];
+            if (10 <= n && n <= 26) {
+                dp[i + 1] = (dp[i + 1] + dp[i - 1]) % MOD;
+            }
+        }
+        System.out.println(dp[input.length]);
     }
 }
