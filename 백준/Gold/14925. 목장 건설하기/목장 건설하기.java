@@ -11,33 +11,22 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
 
-        int[][] map = new int[M + 1][N + 1];
+
+        int result = 0;
+
+        int[][] dp = new int[M + 1][N + 1];
 
         for (int r = 1; r <= M; r++) {
             st = new StringTokenizer(br.readLine());
             for (int c = 1; c <= N; c++) {
-                map[r][c] = Integer.parseInt(st.nextToken());
+                if (Integer.parseInt(st.nextToken()) != 0) continue;
+
+                dp[r][c] = Math.min(dp[r - 1][c - 1], Math.min(dp[r - 1][c], dp[r][c - 1])) + 1;
+
+                result = Math.max(result, dp[r][c]);
             }
         }
 
-        int[][] sum = new int[M + 1][N + 1];
-        for (int r = 1; r <= M; r++) {
-            for (int c = 1; c <= N; c++) {
-                sum[r][c] = map[r][c] + sum[r - 1][c] + sum[r][c - 1] - sum[r - 1][c - 1];
-            }
-        }
-
-        for (int l = Math.min(M, N); 0 < l; l--) {
-            for (int r = 0; r <= M - l; r++) {
-                for (int c = 0; c <= N - l; c++) {
-                    if (sum[r + l][c + l] - sum[r + l][c] - sum[r][c + l] + sum[r][c] == 0) {
-                        System.out.println(l);
-                        return;
-                    }
-                }
-            }
-        }
-
-        System.out.println(0);
+        System.out.println(result);
     }
 }
