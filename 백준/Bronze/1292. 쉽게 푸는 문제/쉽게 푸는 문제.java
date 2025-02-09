@@ -6,30 +6,23 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int result = 0;
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
 
-        int n = 1;
-        int count = 0;
-        while (count + n < A) {
-            count += n;
-            n++;
+        int idx = 1;
+        int[] nums = new int[1001];
+        for (int i = 1; i <= 1000; i++) {
+            for (int j = 1; j <= i && idx <= 1000; j++) {
+                nums[idx++] = i;
+            }
         }
 
-        int remain = n - (A - count - 1);
-        count = A - 1;
-
-        while (count + remain <= B) {
-            result += remain * n;
-            count += remain;
-            n++;
-            remain = n;
+        int result = 0;
+        for (int i = A; i <= B; i++) {
+            result += nums[i];
         }
-
-        result += n * (B - count);
 
         System.out.println(result);
     }
