@@ -1,0 +1,1 @@
+console.log(require("fs").readFileSync(0).toString().trim().split("\n").slice(1).map(v=>{const [a,b,x]=v.split(" ").map(Number);return b+a*(x-1)}).join("\n"))
