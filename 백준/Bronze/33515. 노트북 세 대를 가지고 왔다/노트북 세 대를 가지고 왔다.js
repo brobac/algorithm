@@ -1,0 +1,1 @@
+console.log(Math.min(...require("fs").readFileSync(0).toString().split(" ").map(Number)))
