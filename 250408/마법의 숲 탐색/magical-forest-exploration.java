@@ -92,19 +92,17 @@ public class Main {
                     r++;
                 }
 
-                while (leftCheck(r, c)) {
+                if (leftCheck(r, c)) {
                     r++;
                     c--;
                     d = (d + 3) % 4;
-                }
-
-                while (rightCheck(r, c)) {
+                } else if (rightCheck(r, c)) {
                     r++;
                     c++;
                     d = (d + 1) % 4;
                 }
 
-                if (!downCheck(r, c)) break;
+                if (!downCheck(r, c) && !leftCheck(r, c) && !rightCheck(r, c)) break;
             }
 
 
@@ -128,8 +126,6 @@ public class Main {
             dfs(r, c, k);
             result += maxScore;
 
-//            printMap();
-//            System.out.println("result : " + result);
         }
 
         System.out.println(result);
