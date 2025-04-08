@@ -87,21 +87,26 @@ public class Main {
             int d = Integer.parseInt(st.nextToken());
 
 
-            while (downCheck(r, c)) {
-                r++;
+            while (true) {
+                while (downCheck(r, c)) {
+                    r++;
+                }
+
+                while (leftCheck(r, c)) {
+                    r++;
+                    c--;
+                    d = (d + 3) % 4;
+                }
+
+                while (rightCheck(r, c)) {
+                    r++;
+                    c++;
+                    d = (d + 1) % 4;
+                }
+
+                if (!downCheck(r, c)) break;
             }
 
-            while (leftCheck(r, c)) {
-                r++;
-                c--;
-                d = (d + 3) % 4;
-            }
-
-            while (rightCheck(r, c)) {
-                r++;
-                c++;
-                d = (d + 1) % 4;
-            }
 
             // 골램이 숲을 벗어난 경우
             if (r <= 3) {
@@ -122,6 +127,9 @@ public class Main {
             maxScore = 0;
             dfs(r, c, k);
             result += maxScore;
+
+//            printMap();
+//            System.out.println("result : " + result);
         }
 
         System.out.println(result);
