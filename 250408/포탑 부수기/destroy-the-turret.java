@@ -191,6 +191,7 @@ public class Main {
 
         // 포탄 공격
 
+//        System.out.println("포탄공격");
         int[] dr = {-1, -1, -1, 0, 0, 1, 1, 1};
         int[] dc = {-1, 0, 1, -1, 1, -1, 0, 1};
 
@@ -205,9 +206,20 @@ public class Main {
             if (nc < 0) nc = M - 1;
             if (M <= nc) nc = 0;
 
-            if (nr == ar && nr == ac) continue;
-            if (map[nr][nc] <= 0) continue;
 
+            if (nr == ar && nc == ac) {
+//                System.out.println("공격한 포탑은 포탄공격 피해대상이 아닙니다");
+//                System.out.println("nr : " + nr + " nc : " + nc);
+                continue;
+
+            }
+            if (map[nr][nc] <= 0) {
+//                System.out.println("이미 부서진 포탑입니다");
+//                System.out.println("nr : " + nr + " nc : " + nc);
+                continue;
+            }
+//            System.out.println("파편 공격에 피해를 받았습니다");
+//            System.out.println("nr : " + nr + " nc : " + nc);
             map[nr][nc] -= half;
 
             used[nr][nc] = true;
@@ -275,6 +287,8 @@ public class Main {
 
             // 공격
             attack();
+//            System.out.println("공격----------");
+//            printMap();
 
             // 정비
             recover();
