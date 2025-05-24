@@ -1,0 +1,1 @@
+console.log(require("fs").readFileSync(0).toString().trim().split("\n").slice(1).map((v) => v.split(" ").map(Number)).map(([a, b]) => (a >= b ? "MMM BRAINS" : "NO BRAINS")).join("\n"))
