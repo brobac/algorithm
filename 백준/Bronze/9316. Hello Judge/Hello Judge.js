@@ -1,0 +1,1 @@
+console.log(Array.from(Array(+require('fs').readFileSync(0)),(_,i)=>`Hello World, Judge ${i+1}!`).join('\n'))
