@@ -1,0 +1,1 @@
+v=+require('fs').readFileSync(0);console.log(v*0.78+" "+v*0.956)
