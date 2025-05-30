@@ -1,0 +1,2 @@
+s=new Set(['a','e','i','o','u','A','E','I','O','U',]);
+console.log(require('fs').readFileSync(0).toString().trim().split('\n').slice(0,-1).map(l=>[...l].reduce((t,c)=>s.has(c)?t+1:t,0)).join('\n'))                                           
