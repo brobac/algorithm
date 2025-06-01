@@ -1,0 +1,1 @@
+console.log([...require('fs').readFileSync(0).toString()].reduce((s,c)=>['a','e','i','o','u'].includes(c)?s+1:s,0))
