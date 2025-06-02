@@ -1,0 +1,1 @@
+console.log(require('fs').readFileSync(0).toString().trim().split('\n').slice(0,-1).map(l=>l.split(' ').map(Number).sort((a,b)=>a-b)).map(([a,b])=>a*3-a-b).join('\n'))
