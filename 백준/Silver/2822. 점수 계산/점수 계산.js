@@ -1,0 +1,2 @@
+r=require('fs').readFileSync(0).toString().trim().split('\n').map((v,i)=>[+v,i+1]).sort((a,b)=>b[0]-a[0]).slice(0,5).sort((a,b)=>a[1]-b[1]);
+console.log(r.reduce((s,c)=>s+c[0],0)+'\n'+r.map(v=>v[1]).join(' '))
