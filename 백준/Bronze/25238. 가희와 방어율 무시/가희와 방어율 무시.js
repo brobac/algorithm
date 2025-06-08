@@ -1,0 +1,1 @@
+[a,b]=require('fs').readFileSync(0).toString().split(' ').map(Number);console.log(a*0.01*(100-b)<100?1:0)
