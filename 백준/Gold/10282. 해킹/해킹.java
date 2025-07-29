@@ -30,18 +30,15 @@ public class Main {
             int[] time = new int[N + 1];
             Arrays.fill(time, Integer.MAX_VALUE);
             time[C] = 0;
-            PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(v -> v[1]));
-            pq.offer(new int[]{C, 0});
-            while (!pq.isEmpty()) {
-                int[] cur = pq.poll();
-
-                if (time[cur[0]] < cur[1]) continue;
-
+            Queue<int[]> q = new ArrayDeque<>();
+            q.offer(new int[]{C, 0});
+            while (!q.isEmpty()) {
+                int[] cur = q.poll();
                 for (int[] adj : adjList[cur[0]]) {
                     int nt = cur[1] + adj[1];
                     if (nt < time[adj[0]]) {
                         time[adj[0]] = nt;
-                        pq.offer(new int[]{adj[0], nt});
+                        q.offer(new int[]{adj[0], nt});
                     }
 
                 }
