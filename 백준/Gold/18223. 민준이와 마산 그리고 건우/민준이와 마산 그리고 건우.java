@@ -80,7 +80,7 @@ public class Main {
 
         @Override
         public int compareTo(Edge o) {
-            return Integer.compare(o.weight, weight);
+            return Integer.compare(weight, o.weight);
         }
     }
 }
