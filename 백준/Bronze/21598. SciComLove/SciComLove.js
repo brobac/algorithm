@@ -1,0 +1,1 @@
+console.log("SciComLove\n".repeat(+require('fs').readFileSync(0)))
