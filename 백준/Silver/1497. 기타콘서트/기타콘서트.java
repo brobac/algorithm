@@ -24,7 +24,7 @@ public class Main {
         if (cnt == N) return;
 
         for (int i = start; i < N; i++) {
-            solution(cnt + 1, start + 1, v | able[i]);
+            solution(cnt + 1, i + 1, v | able[i]);
         }
 
     }
